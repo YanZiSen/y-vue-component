@@ -1,0 +1,33 @@
+{
+  "name": "my-view-package",
+  "version": "0.1.0",
+  "description": "前端常用组件简单封装",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --config ./build/webpack.build.js"
+  },
+  "keywords": [
+    "front-end",
+    "vue-component"
+  ],
+  "author": "yanning",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YanZiSen/y-vue-component.git"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "babel-loader": "^8.1.0",
+    "clean-webpack-plugin": "^3.0.0",
+    "css-loader": "^3.5.1",
+    "stylus": "^0.54.7",
+    "stylus-loader": "^3.0.2",
+    "vue-loader": "^15.9.1",
+    "vue-template-compiler": "^2.6.11",
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11",
+    "webpack-merge": "^4.2.2"
+  }
+}
