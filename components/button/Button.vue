@@ -31,7 +31,7 @@ export default {
 }
 </script>
 
-<style scoped lang="stylus">
+<style lang="stylus" scoped>
   mainColor = #229F84
   btnHoverColor = #27B898
   clickBlueColor = #1C856E
