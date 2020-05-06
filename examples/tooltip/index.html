@@ -10,7 +10,7 @@
         <y-table :columns="columns" :data="data">
             <template slot="address" slot-scope="{row}">
                 <div class="text-overflow">
-                    <span v-tooltip>{{row.address}}</span>
+                    <span v-tooltip.dark>{{row.address}}</span>
                 </div>
             </template>
         </y-table>

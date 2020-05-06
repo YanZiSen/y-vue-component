@@ -1,9 +1,13 @@
 class Popper {
     constructor (baseDom, insertedDom, config) {
+        let mergeConfig = this.mergeConfig(config)
         if (typeof insertedDom === 'function') {
             insertedDom = insertedDom()
         }
         insertedDom.classList.add('y-popper')
+        if (mergeConfig.effect === 'dark') {
+            insertedDom.classList.add('dark')
+        }
         this.state = {
             elements: {
                 baseDom,
@@ -14,6 +18,12 @@ class Popper {
         }
         this.bindScroll()
         this.update()
+    }
+    mergeConfig (config) {
+        let defaultConfig = {
+            effect: 'white'
+        }
+        return Object.assign(defaultConfig, config)
     }
     bindScroll () {
         let scrollList = this.getScrollParents()
@@ -76,8 +86,9 @@ class Popper {
     }
 }
 export default {
-    inserted (el, vNode) {
+    inserted (el, binding, vNode, oldNode) {
         console.log('inserted')
+        console.log(binding)
         let parentEl = el.parentNode
         let {width} = el.getBoundingClientRect()
         let {width: parentWidth} = parentEl.getBoundingClientRect()
@@ -90,6 +101,8 @@ export default {
             div.style.maxWidth = '300px'
             document.body.appendChild(div)
             return div
+          },{
+              effect: binding.modifiers.dark ? 'dark' : 'white'
           })
           console.log('over')
         }
@@ -106,18 +119,12 @@ export default {
           el.addEventListener('mouseout', el._mouseOut, false)
         }
     },
-    componentUpdated (el, vNode) {
+    componentUpdated (el, binding, vNode, oldNode) {
         let parentEl = el.parentNode
         let {width} = el.getBoundingClientRect()
         let {width: parentWidth} = parentEl.getBoundingClientRect()
         el.removeEventListener('mouseover', el._mouseOver, false)
         el.removeEventListener('mouseout', el._mouseOut, false)
-        el._mouseOver = () => {
-            console.log('over')
-        }
-        el._mouseOut = () => {
-            console.log('out')
-        }
         if (width > parentWidth) {
             el.addEventListener('mouseover', el._mouseOver, false)
             el.addEventListener('mouseout', el._mouseOut, false)
