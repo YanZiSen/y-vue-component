@@ -6,46 +6,47 @@ blackDark = rgba(0,0,0,.8)
   line-height: 32px;
   font-size: 14px;
   background-color: #fff;
-  &:before
-    content: '';
-    position: absolute;
-    z-index: 0;
-    border-width: 8px;
-    left: 50%;
-    transform: translateX(-50%);
-    border-color: transparent;
-    border-style: solid;
-  &.bottom:before
-    bottom: -16px;
-    border-top-color: #ddd;
-  &.top:before
-    top: -16px;
-    border-bottom-color: #ddd;
-  &:after
-    content: '';
-    z-index: 1;
-    position: absolute;
-    border-width: 6px;
-    transform: translateX(-50%);
-    left: 50%;
-    border-color: transparent;
-    border-style: solid;
-  &.bottom:after
-    bottom: -12px;
-    border-top-color: #fff;
-  &.top:after
-    top: -16px;
-    border-bottom-color: #fff;
   &.dark
     background-color blackDark
     color: #fff;
-    &.top
-      &:before
-        border-bottom-color blackDark
-      &:after
-        border-bottom-color: transparent;
-    &.bottom
-      &:after
-        border-top-color transparent
-      &:before
-        border-top-color blackDark
+  // &:before
+  //   content: '';
+  //   position: absolute;
+  //   z-index: 0;
+  //   border-width: 8px;
+  //   left: 50%;
+  //   transform: translateX(-50%);
+  //   border-color: transparent;
+  //   border-style: solid;
+  // &.bottom:before
+  //   bottom: -16px;
+  //   border-top-color: #ddd;
+  // &.top:before
+  //   top: -16px;
+  //   border-bottom-color: #ddd;
+  // &:after
+  //   content: '';
+  //   z-index: 1;
+  //   position: absolute;
+  //   border-width: 6px;
+  //   transform: translateX(-50%);
+  //   left: 50%;
+  //   border-color: transparent;
+  //   border-style: solid;
+  // &.bottom:after
+  //   bottom: -12px;
+  //   border-top-color: #fff;
+  // &.top:after
+  //   top: -16px;
+  //   border-bottom-color: #fff;
+
+  //   &.top
+  //     &:before
+  //       border-bottom-color blackDark
+  //     &:after
+  //       border-bottom-color: transparent;
+  //   &.bottom
+  //     &:after
+  //       border-top-color transparent
+  //     &:before
+  //       border-top-color blackDark

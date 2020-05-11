@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DragAndDrop</title>
+</head>
+<body>
+    <ul id="items">
+        <li>
+            item1
+            <ul id="item-childs">
+                <li>item-child1</li>
+                <li>item-child2</li>
+                <li>item-child3</li>
+            </ul>
+        </li>
+        <li>item2</li>
+        <li>item3</li>
+    </ul>
+
+    <div draggable="true" onselectstart='return false' onselect="document.selection.empty()">lksjdflaksjdflaksjdflkasjdflakjsdflkasjd</div>
+
+    <section>
+        <p>拖动调换位置</p>
+        <div id="test1">
+            <div class="drag-item" style="background-color:red"></div>
+            <div class="drag-item" style="background-color:yellow"></div>
+            <br>
+            <div class="drag-item" style="background-color:blue"></div>
+            <div class="drag-item" style="background-color:green"></div>
+        </div>
+    </section>
+</body>
+</html>

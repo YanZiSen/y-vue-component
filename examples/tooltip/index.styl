@@ -4,3 +4,27 @@
     overflow hidden
     display inline-block
     width 100%
+
+.tool-tip-warpper
+    margin-top 20px
+    overflow hidden
+    height 40px
+    .left
+        height 40px
+        float left
+        width 60px
+        background-color red
+        @extends .text-overflow
+    .right
+        height 40px
+        float right
+        width 60px
+        background-color yellow
+        @extends .text-overflow
+
+.box-sizing-test
+    width 320px
+    padding 0 20px
+    background-color blue
+    display inline-block
+    @extends .text-overflow
