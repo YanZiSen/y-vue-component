@@ -1,7 +1,7 @@
 import Vue from 'vue'
-import Element from 'element-ui/src/index'
+// import Element from 'element-ui/src/index'
 
-Vue.use(Element)
+// Vue.use(Element)
 
 const app = new Vue({
     el: '#app',

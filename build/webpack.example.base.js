@@ -63,7 +63,26 @@ module.exports = {
                     'css-loader', // 处理js中 import‘css’将css处理成commonjs模块引入js中
                     'stylus-loader'
                 ]
-            }
+            },
+            {
+                test: /\.css/,
+                use: [
+                    'style-loader', // 将css插入到html中的css中,没有此loader则组件样式不生效
+                    'css-loader'
+                ]
+            },
+            {
+                test: /\.(png|jpg|gif|eot|woff2?|ttf|svg)$/i,
+                use: [
+                    {
+                        loader: 'url-loader',
+                        options: {
+                            limit: 8192,
+                        },
+                    },
+                ],
+            },
+
         ]
     },
     // mode: 'development',
