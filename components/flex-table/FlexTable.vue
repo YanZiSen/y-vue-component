@@ -14,8 +14,8 @@
           <td class="t-td" v-for="(c, index) in columns" :key="index + ',' + c.name + ',' + idx" :style="{ width: c.width + 'px' }">
             <!-- <validation-provider :rules="c.rules" :name="c.name" v-slot="{ failed }"> 
               <input v-else type="text" v-model="item[c.name]" class="t-input" :class="{ 'has-error': failed }"/> -->
-              <component class='t-input' @hide-popper='hidePopper'
-               @show-popper='showPopper' :is="componentMap[c.type] || 'el-input'" v-model="item[c.name]"/>            
+              <txt class='t-input' v-if="c.type === 'text'" :value='item[c.name]' @hide-popper='hidePopper' @show-popper='showPopper'></txt>
+              <form-warpper v-else class='t-input' @hide-popper='hidePopper' @show-popper='showPopper' :type ='c.type' v-model="item[c.name]"/>            
             <!-- </validation-provider> -->
           </td>
         </tr>
@@ -33,6 +33,7 @@
 import Txt from './Text'
 import {Tooltip} from 'element-ui'
 import Vue from 'vue'
+import FormWarpper from './FormWarpper'
 import {throttle, debounce} from 'throttle-debounce'
 export default {
   name: "flex-table",
@@ -67,13 +68,13 @@ export default {
       }
     }
   },
-  components: {Txt},
+  components: {Txt, FormWarpper},
   computed: {
     componentMap() {
       return {
-        'input': 'el-input',
-        'select': 'el-select',
-        'date': 'el-date-picker',
+        'input': 'form-warpper',
+        'select': 'form-warpper',
+        'date': 'form-warpper',
         'text': 'txt'
       }
     }
@@ -88,7 +89,6 @@ export default {
       console.log('txt', txt);
       this._popper.content = txt;
       this._popper.referenceElm = referEle;
-      // debugger
       this._popper.$refs.popper.style.display = 'none';
       this._popper.doDestroy();
       this._popper.setExpectedState(true);
@@ -100,6 +100,35 @@ export default {
         this._popper.setExpectedState(false);
         this._popper.handleClosePopper();
       }
+    },
+    createPopper () {
+     /*  const popperHoc = {
+        functional: true,
+        name: 'popper-hoc',
+        render (h, ctx) {
+          return h(Tooltip, {
+            props: {
+              placement: 'top'
+            }
+          })
+        }
+      }
+      const popperHocCustructor = Vue.extend(popperHoc);
+
+      this._popperHocIns = new popperHocCustructor();
+      console.log(this._popperHocIns);
+      this._popperHocIns.$mount(document.getElementById('popper-warpper')); */
+      // this._popperHocIns = new Vue.extend(popperHoc)();
+      // this._popperHocIns.$mount(document.getElementById('popper-warpper'));
+
+      const TooltipChild = Vue.extend(Tooltip);
+      this._popper = new TooltipChild({
+        propsData: {
+          placement: 'top',
+          effect: 'light'
+        }
+      });
+      this._popper.$mount(document.getElementById('popper-warpper'));
     }
   },
   created () {
@@ -110,9 +139,7 @@ export default {
   },
   mounted () {
     this.activateTooltip = debounce(120, tooltip => tooltip.handleShowPopper());
-    let Popper = Vue.extend(Tooltip);
-    this._popper = new Popper();
-    this._popper.$mount(document.querySelector('#popper-warpper'));
+    this.createPopper();
   }
 };
 </script>
